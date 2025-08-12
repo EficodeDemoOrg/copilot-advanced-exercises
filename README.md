@@ -137,7 +137,7 @@ Individually completed exercises for part 1 of the one-day workshop.
         * Customize UX-friendly validation rules
         ```
 
-### Model Context Protocol recap and Postgres MCP server installation
+### Model Context Protocol recap and MySQL MCP server installation
 
 * **Purpose:** Understand how MCP servers work and how they can be run locally
 * **IDE Support:** Generally available (GA) in Copilot Chat for Visual Studio Code, in public preview for Copilot in Visual Studio, JetBrains, Eclipse, and Xcode.
@@ -151,38 +151,38 @@ Individually completed exercises for part 1 of the one-day workshop.
 * **Steps:**
     1. VS Code => Shift+Control+P (Win) or Shift+CMD+P (Mac)
     2. \> MCP: Add server...
-    3. Docker image => mcp/postgres
-    4. "Install mcp/postgres from mcp?" => select "Allow"
-    5. Postgres URL:
-        * Mac: postgresql://postgres:postgres@host.docker.internal:5432/library_app
-        * Codespaces / Linux: postgresql://postgres:postgres@172.17.0.1:5432/library_app
+    3. Docker image => mcp/mysql
+    4. "Install mcp/mysql from mcp?" => select "Allow"
+    5. MySQL URL:
+        * Mac: mysql://mysql:mysql@host.docker.internal:3306/library_app
+        * Codespaces / Linux: mysql://mysql:mysql@172.17.0.1:3306/library_app
     6. If you are next asked for port number, database name, username, and password: use values from the URL above
         * Port: 5432
         * Database name: library_app
         * Username: postgres
         * Password: postgres
-    7. "Enter Server ID" => "Postgres"
+    7. "Enter Server ID" => "MySQL"
     8. "Choose where to save the configuration" => select "Workspace settings"
     9. mcp.json should be opened by the IDE
     10. Start the server by clicking on the play button in mcp.json
     11. The tools provided by the MCP server should now be available in the tools menu in the Agent mode prompt box (make sure Agent mode is selected, then click on the wrench icon). You can enable or disable tools by ticking/unticking the boxes.
 
 
-### Testing the PostgreSQL MCP server
-* **Purpose:** Try out and test the PostgreSQL MCP server against a database
+### Testing the MySQL MCP server
+* **Purpose:** Try out and test the MySQL MCP server against a database
 * **Prerequisites:**
     * Docker installed.
 * **Steps:**
     * cd mcp-exercise
     * docker compose up db
     * Copilot Chat => Agent Mode Selected
-    * Make sure from the tools menu that the Postgres MCP Server and its tool "query" are enabled
+    * Make sure from the tools menu that the MySQL MCP Server and its tool "query" are enabled
     * Prompt: "#query what's the schema of my database?"
     * Prompt: "Show all book loans"
     * Prompt: "Show all users who have at least one loan"
     * Think about how the information provided by the MCP server could be utilized in prompts. How could it help build complete, AI-powered development flows?
 
-### Using PostgreSQL MCP Server together with prompt files
+### Using MySQL MCP Server together with prompt files
 * **Purpose:** Use a prompt file to automate the generation of an ER diagram based on the database schema.
 * **Steps:**
     1. Create a new prompt file (see the instructions above)
@@ -193,7 +193,7 @@ Individually completed exercises for part 1 of the one-day workshop.
     tools: ['query']
     description: 'Generate or update the ER diagram of the database using Mermaid syntax.'
     ---
-    Use the #query tool to get a description of the PostgreSQL database schema.
+    Use the #query tool to get a description of the MySQL database schema.
     Then generate an Entity Relationship diagram based on the schema. Use Mermaid
     syntax to create the diagram. Create the diagram in a file called ER.md.
     Create the file if it doesn't exist yet or update the existing file.
@@ -212,9 +212,9 @@ Individually completed exercises for part 1 of the one-day workshop.
         * [Perplexity](https://mcp.so/server/perplexity/ppl-ai)
         * [Slack](https://mcp.so/server/slack/modelcontextprotocol)
 
-### PostgreSQL MCP Troubleshooting
+### MySQL MCP Troubleshooting
 
-Trouble using or connecting to the PostgreSQL MCP server?
+Trouble using or connecting to the MySQL MCP server?
 
 1. Make sure the configuration in mcp.json looks like this:
 
@@ -222,14 +222,14 @@ Trouble using or connecting to the PostgreSQL MCP server?
     ```json
     {
         "servers": {
-            "postgres": {
+            "mysql": {
                 "command": "docker",
                 "args": [
                     "run",
                     "-i",
                     "--rm",
-                    "mcp/postgres",
-                    "postgresql://postgres:postgres@host.docker.internal:5432/library_app"
+                    "mcp/mysql",
+                    "mysql://mysql:mysql@host.docker.internal:3306/library_app"
                 ]
             }
         }
@@ -240,14 +240,14 @@ Trouble using or connecting to the PostgreSQL MCP server?
     ```json
     {
         "servers": {
-            "postgres": {
+            "mysql": {
                 "command": "docker",
                 "args": [
                     "run", 
                     "-i", 
                     "--rm", 
-                    "mcp/postgres", 
-                    "postgresql://postgres:postgres@172.17.0.1:5432/library_app"]
+                    "mcp/mysql", 
+                    "mysql://mysql:mysql@172.17.0.1:3306/library_app"]
                 }
         }
     }
@@ -255,7 +255,7 @@ Trouble using or connecting to the PostgreSQL MCP server?
 2. Make sure the previous MCP Docker containers are stopped before running the server again:
     ```bash
     % docker ps | grep mcp                                          
-    db599e110c3f   mcp/postgres                           "node dist/index.js …"   2 hours ago    Up 2 hours
+    db599e110c3f   mcp/mysql                           "node dist/index.js …"   2 hours ago    Up 2 hours
     % docker stop db599e110c3f
     ```
 
@@ -265,19 +265,19 @@ If you don't have Docker installed and can't install it, you can use npm to run 
 ```json
 {
     "servers": {
-        "postgres": {
+        "mysql": {
             "command": "npx",
             "args": [
                 "-y",
-                "@modelcontextprotocol/server-postgres",
-                "postgresql://localhost/mydb"
+                "@modelcontextprotocol/server-mysql",
+                "mysql://localhost/mydb"
             ]
         }
     }
 }
 ```
 To run the database locally without Docker, you can either use Podman to run the docker-compose.yml file
-or install the database on your workstation using PostgreSQL installers. You can also use any test database
+or install the database on your workstation using MySQL installers. You can also use any test database
 you are currently using for work.
 
 ## Part 2: The Hackathon

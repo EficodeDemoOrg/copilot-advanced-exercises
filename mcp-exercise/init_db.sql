@@ -1,11 +1,7 @@
 -- Library Management System Database Schema
 
 -- Create schema if it doesn't exist
--- DROP SCHEMA IF EXISTS library_app CASCADE;
--- CREATE SCHEMA library_app;
-
--- Set search path to our schema
--- SET search_path TO library_app;
+-- MySQL equivalent to schema is database, already created in docker-compose.yml
 
 -- Drop tables if they exist to allow re-running this script
 DROP TABLE IF EXISTS book_returns;
@@ -21,14 +17,14 @@ DROP TABLE IF EXISTS publishers;
 
 -- Create table for user roles (admin, librarian, member)
 CREATE TABLE user_roles (
-    role_id SERIAL PRIMARY KEY,
+    role_id INT AUTO_INCREMENT PRIMARY KEY,
     role_name VARCHAR(50) NOT NULL UNIQUE,
     description TEXT
 );
 
 -- Create table for users
 CREATE TABLE users (
-    user_id SERIAL PRIMARY KEY,
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
     role_id INTEGER REFERENCES user_roles(role_id),
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
@@ -36,25 +32,25 @@ CREATE TABLE users (
     phone_number VARCHAR(20),
     address TEXT,
     date_of_birth DATE,
-    membership_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    membership_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     membership_expiry DATE,
     username VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Create table for book categories/genres
 CREATE TABLE categories (
-    category_id SERIAL PRIMARY KEY,
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT
 );
 
 -- Create table for publishers
 CREATE TABLE publishers (
-    publisher_id SERIAL PRIMARY KEY,
+    publisher_id INT AUTO_INCREMENT PRIMARY KEY,
     publisher_name VARCHAR(255) NOT NULL UNIQUE,
     address TEXT,
     phone_number VARCHAR(20),
@@ -64,7 +60,7 @@ CREATE TABLE publishers (
 
 -- Create table for authors
 CREATE TABLE authors (
-    author_id SERIAL PRIMARY KEY,
+    author_id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
     last_name VARCHAR(100) NOT NULL,
     date_of_birth DATE,
@@ -76,7 +72,7 @@ CREATE TABLE authors (
 
 -- Create table for books
 CREATE TABLE books (
-    book_id SERIAL PRIMARY KEY,
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
     isbn VARCHAR(20) UNIQUE,
     title VARCHAR(255) NOT NULL,
     subtitle VARCHAR(255),
@@ -88,59 +84,67 @@ CREATE TABLE books (
     description TEXT,
     cover_image_url VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Create junction table for books and authors (many-to-many)
 CREATE TABLE book_authors (
-    book_id INTEGER REFERENCES books(book_id) ON DELETE CASCADE,
-    author_id INTEGER REFERENCES authors(author_id) ON DELETE CASCADE,
-    PRIMARY KEY (book_id, author_id)
+    book_id INTEGER,
+    author_id INTEGER,
+    PRIMARY KEY (book_id, author_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE,
+    FOREIGN KEY (author_id) REFERENCES authors(author_id) ON DELETE CASCADE
 );
 
 -- Create table for physical copies of books
 CREATE TABLE book_copies (
-    copy_id SERIAL PRIMARY KEY,
-    book_id INTEGER REFERENCES books(book_id) ON DELETE CASCADE,
+    copy_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INTEGER,
     copy_number VARCHAR(50) NOT NULL,
     acquisition_date DATE NOT NULL,
     price DECIMAL(10, 2),
-    condition VARCHAR(50), -- New, Good, Fair, Poor
+    `condition` VARCHAR(50), -- New, Good, Fair, Poor
     location VARCHAR(100), -- Shelf location in the library
     status VARCHAR(50) NOT NULL DEFAULT 'Available', -- Available, Loaned, Reserved, Under Repair, Lost
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(book_id, copy_number)
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    UNIQUE(book_id, copy_number),
+    FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE
 );
 
 -- Create table for book loans
 CREATE TABLE book_loans (
-    loan_id SERIAL PRIMARY KEY,
-    copy_id INTEGER REFERENCES book_copies(copy_id) ON DELETE RESTRICT,
-    user_id INTEGER REFERENCES users(user_id) ON DELETE RESTRICT,
-    checkout_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    loan_id INT AUTO_INCREMENT PRIMARY KEY,
+    copy_id INTEGER,
+    user_id INTEGER,
+    checkout_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     due_date DATE NOT NULL,
     return_date DATE,
     renewed_count INTEGER DEFAULT 0,
     fine_amount DECIMAL(10, 2) DEFAULT 0.00,
     fine_paid BOOLEAN DEFAULT FALSE,
-    librarian_id INTEGER REFERENCES users(user_id), -- Librarian who processed the loan
+    librarian_id INTEGER, -- Librarian who processed the loan
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (copy_id) REFERENCES book_copies(copy_id) ON DELETE RESTRICT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE RESTRICT,
+    FOREIGN KEY (librarian_id) REFERENCES users(user_id)
 );
 
 -- Create table for book returns (could be used for audit purposes)
 CREATE TABLE book_returns (
-    return_id SERIAL PRIMARY KEY,
-    loan_id INTEGER REFERENCES book_loans(loan_id) ON DELETE CASCADE,
-    return_date DATE NOT NULL DEFAULT CURRENT_DATE,
+    return_id INT AUTO_INCREMENT PRIMARY KEY,
+    loan_id INTEGER,
+    return_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     condition_on_return VARCHAR(50),
-    librarian_id INTEGER REFERENCES users(user_id), -- Librarian who processed the return
+    librarian_id INTEGER, -- Librarian who processed the return
     fine_assessed DECIMAL(10, 2) DEFAULT 0.00,
     notes TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (loan_id) REFERENCES book_loans(loan_id) ON DELETE CASCADE,
+    FOREIGN KEY (librarian_id) REFERENCES users(user_id)
 );
 
 -- Insert default user roles
