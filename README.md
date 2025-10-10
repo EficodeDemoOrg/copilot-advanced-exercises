@@ -130,17 +130,30 @@ Individually completed exercises for part 1 of the one-day workshop.
 
 ## Model Context Protocol Exercises
 
-### MCP Recap and PostgreSQL MCP
+### MCP Introduction and Path Selection
 
-* **Purpose:** Understand how MCP servers work and how they can be run locally
+* **Purpose:** Understand how MCP servers work and choose your learning path
 * **IDE Support:** Generally available (GA) in Copilot Chat for Visual Studio Code, in public preview for Copilot in Visual Studio, JetBrains, Eclipse, and Xcode.
-* **MCP Recap:**
+* **MCP Overview:**
     * MCP (Model Context Protocol) servers provide a standardized way to interact with various tools, services, and systems.
     * An MCP server is run locally on the developer's workstation, e.g., as a Docker container (remote servers are also possible using HTTP)
     * Developers can initialize and manage MCP servers directly from their IDE or command-line tools.
     * MCP allows seamless integration of external tools and data sources with Copilot. They support multiple types of integrations, including databases, APIs, and cloud services.
     * MCP servers enable real-time exploration, execution, and interaction with connected resources.
     * A wide variety of MCP servers are already available. **Caution must be taken when running MCP servers** found on the web because of potentially insecure or malicious implementations.
+
+**Choose Your Path:**
+
+* **Path A: New to MCP?** → Start with "PostgreSQL MCP Server" below to learn by using an existing MCP server
+* **Path B: Familiar with MCP?** → Skip to "Build Your Own MCP Server" to create a custom server from scratch
+
+---
+
+### Path A: Using Existing MCP Servers
+
+#### PostgreSQL MCP Server Setup
+
+* **Purpose:** Learn how to set up and use an existing MCP server
 * **Steps:**
     1. VS Code => Shift+Control+P (Win) or Shift+CMD+P (Mac)
     2. \> MCP: Add server...
@@ -161,7 +174,7 @@ Individually completed exercises for part 1 of the one-day workshop.
     11. The tools provided by the MCP server should now be available in the tools menu in the Agent mode prompt box (make sure Agent mode is selected, then click on the wrench icon). You can enable or disable tools by ticking/unticking the boxes.
 
 
-### Testing the PostgreSQL MCP server
+#### Testing the PostgreSQL MCP server
 * **Purpose:** Try out and test the PostgreSQL MCP server against a database
 * **Prerequisites:**
     * Docker installed.
@@ -175,7 +188,7 @@ Individually completed exercises for part 1 of the one-day workshop.
     * Prompt: "Show all users who have at least one loan"
     * Think about how the information provided by the MCP server could be utilized in prompts. How could it help build complete, AI-powered development flows?
 
-### Using PostgreSQL MCP Server together with prompt files
+#### Using PostgreSQL MCP Server together with prompt files
 * **Purpose:** Use a prompt file to automate the generation of an ER diagram based on the database schema.
 * **Steps:**
     1. Create a new prompt file (see the instructions above)
@@ -194,8 +207,64 @@ Individually completed exercises for part 1 of the one-day workshop.
     3. Test the prompt file by typing /er in agent mode. Refine the prompt if Copilot is not able to fulfill the purpose of the prompt.
     4. If you want to see the resulting Mermaid diagram, push the file to a GitHub repository and open the file.
 
+---
 
-### Playwright MCP
+### Path B: Build Your Own MCP Server
+
+* **Purpose:** Learn how MCP servers work by building one from scratch. This demystifies what MCP tools actually do and how they extend Copilot's capabilities.
+* **Prerequisites:** 
+    * Python 3.10+ OR Node.js 18+ installed
+    * Completed the PostgreSQL MCP exercise
+
+#### Steps:
+
+1. **Learn the basics:** Read the official documentation on building MCP servers: [MCP Documentation - Build a Server](https://modelcontextprotocol.io/docs/develop/build-server). The documentation provides complete examples for both Python and TypeScript/Node.js.
+
+2. **Choose your project idea:**
+    * **Project File Analyzer**: Count lines of code, find TODOs, list recent changes
+    * **Mock Data Generator**: Generate test data for users, products, transactions
+    * **Development Helper**: Check dependencies, environment variables, system status
+    * **Custom Calculator**: Unit conversions, time zones, specialized calculations
+    * **Or create your own** based on your daily development needs
+
+3. **Build your server:** Follow the MCP documentation to create your server using either Python (`mcp` library) or TypeScript/Node.js (`@modelcontextprotocol/sdk`).
+
+4. **Add to VS Code:**
+    * Open Command Palette (Shift+Cmd+P on Mac / Shift+Ctrl+P on Windows)
+    * Type: `MCP: Add server...`
+    * Select `Custom command`
+    * Enter your server command:
+        * **Python (uv):** Command: `uv`, Arguments: `--directory /PATH/TO/your-server run server.py`
+        * **Node.js:** Command: `node`, Arguments: `/PATH/TO/your-server/dist/index.js`
+    * Enter a Server ID (e.g., "my-tools")
+    * Choose "Workspace settings"
+    * Start the server using the play button in the generated `mcp.json`
+
+5. **Test your server:**
+    * Reload VS Code (Cmd+Shift+P → "Developer: Reload Window")
+    * Open Copilot Chat in Agent mode
+    * Click the wrench icon (🔧) and verify your tools appear
+    * Enable your custom tools
+    * Test with relevant prompts based on your implementation
+
+6. **Troubleshooting:**
+    * Ensure paths in `mcp.json` are absolute paths
+    * Check Output panel (View → Output → GitHub Copilot) for errors
+    * Verify the server runs without errors when started manually
+    * Make sure the server is started (green play button in mcp.json)
+
+**Discussion Points:**
+* How does building an MCP server differ from regular function development?
+* What internal tools at your company could benefit from MCP integration?
+* When would you choose MCP servers vs. custom chat modes or prompt files?
+
+---
+
+### Exploring Other MCP Servers
+
+After completing either Path A or Path B, explore these additional MCP servers:
+
+#### Playwright MCP
 * **Purpose:** Enable the agent mode to use browser
 * **Steps:**
     1. Read the [documentation](https://github.com/microsoft/playwright-mcp) for the Playwright MCP server
@@ -204,7 +273,7 @@ Individually completed exercises for part 1 of the one-day workshop.
         * Login to your test environment
         * Browse to https://duckduckgo.com/, make a query, count the number of search results.
 
-### Context7 MCP
+#### Context7 MCP
 * **Purpose:** Add up-to-date documentation of your frameworks to the prompt context
 * **Steps:**
     1. Read the [documentation](https://github.com/upstash/context7) for Context7 
@@ -213,7 +282,7 @@ Individually completed exercises for part 1 of the one-day workshop.
     4. Think about how you could benefit from Context7 in your project. See if the libraries in your project are supported by searching them in [context7.com](https://context7.com/)
 
 
-### Other MCP Servers
+#### Other MCP Servers
 * **Purpose:** Explore and try out other MCP servers
 * **Steps:**
     1. Browse to http://mcp.so
