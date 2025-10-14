@@ -107,64 +107,6 @@ Individually completed exercises for part 1 of the one-day workshop.
         * It notices if it produces compilation errors and proposes fixes for them automatically
         * Depending on the situation, it could also modify or make additions to unit tests or even try to run them
 
-### Spec-Driven Development with Spec Kit
-* **Purpose:** Learn a structured methodology for building applications using AI agents through specifications rather than direct coding
-* **Prerequisites:**
-    * Completed "Implement features using Agent mode" exercise
-    * Python 3.11+ and [uv](https://docs.astral.sh/uv/) installed
-    * Git installed
-
-#### What is Spec-Driven Development?
-
-Spec-Driven Development flips traditional software development: instead of writing code first and documentation later, you create executable specifications that directly generate working implementations. Specifications become the source of truth, not just scaffolding.
-
-#### Steps:
-
-1. **Learn about Spec Kit:** Read the [Spec Kit documentation](https://github.com/github/spec-kit) and [Spec-Driven Development methodology](https://github.com/github/spec-kit/blob/main/spec-driven.md)
-
-2. **Install Spec Kit:**
-   ```bash
-   uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
-   specify check
-   ```
-
-3. **Initialize a project:**
-   ```bash
-   # New project
-   specify init my-spec-project --ai copilot
-   
-   # Or in existing project
-   cd your-project
-   specify init --here --ai copilot
-   ```
-
-4. **Use Spec Kit slash commands in Copilot Chat (Agent mode):**
-   * `/speckit.constitution` - Create project principles
-   * `/speckit.specify` - Define what you want to build (requirements, not implementation)
-   * `/speckit.plan` - Specify your tech stack and architecture
-   * `/speckit.tasks` - Generate actionable task list
-   * `/speckit.implement` - Execute implementation
-
-5. **Optional quality commands:**
-   * `/speckit.clarify` - Clarify underspecified areas (before planning)
-   * `/speckit.analyze` - Check consistency (after tasks, before implementation)
-   * `/speckit.checklist` - Generate validation checklists
-
-6. **Experiment with different approaches:**
-   * Try building a small feature end-to-end
-   * Compare Spec-Driven Development vs. direct Agent mode
-   * Use specifications to explore different tech stack options
-
-**Discussion Questions:**
-* When would you choose Spec-Driven Development over direct Agent mode?
-* How could your team benefit from specification-first development?
-* Could you combine Spec Kit with custom instructions and prompt files?
-* What types of projects would be good candidates for Spec Kit?
-
-**Learn More:**
-* [Video Overview](https://www.youtube.com/watch?v=a9eR1xsfvHg)
-* [Troubleshooting Guide](https://github.com/github/spec-kit#-troubleshooting)
-
 ### Debugging
 * **Purpose:**  If/when you run into problems while developing your application, use Copilot's features to debug your code and understand error messages and stack traces.
 * **In VSCode:** 
