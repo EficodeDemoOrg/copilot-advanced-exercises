@@ -7,10 +7,53 @@ Exercises for the GitHub Copilot Workshop - Advanced Track.
 * GitHub Copilot and Copilot Chat extensions installed
 * A terminal window open within the IDE
 
+## Overview
+
+This workshop covers advanced GitHub Copilot techniques organized into three main tracks:
+
+### [Track 1: Mastering Agent-Driven Development](#mastering-agent-driven-development)
+Build a complete development workflow using AI agents, custom instructions, and domain-specific patterns:
+- [Exercise 1: Create a new project with AI Collaboration](#exercise-1-create-a-new-project-with-ai-collaboration)
+- [Exercise 2: Custom instructions](#exercise-2-custom-instructions)
+- [Exercise 3: Domain-Specific Custom Instructions](#exercise-3-domain-specific-custom-instructions)
+  - [Part A: Identify Domains](#part-a-identify-domains-ai-as-sparring-partner--researcher)
+  - [Part B: Create Domain Instruction Files](#part-b-create-domain-instruction-files)
+  - [Part C: Generate Instructions with AI](#part-c-generate-instructions-with-ai-ai-as-researcher--implementer)
+  - [Part D: Validate with AI](#part-d-validate-with-ai-ai-as-validator)
+- [Exercise 4: Domain-Specific Chat Modes](#exercise-4-domain-specific-chat-modes) (VS Code only)
+- [Exercise 5: Domain-Specific Prompt Files (Workflows)](#exercise-5-domain-specific-prompt-files-workflows)
+  - [Part A: Plan Workflows with AI](#part-a-plan-workflows-with-ai-ai-as-sparring-partner)
+  - [Part B: Create Prompt Files](#part-b-create-prompt-files)
+  - [Part C: Implement Workflows with AI](#part-c-implement-workflows-with-ai-ai-as-implementer)
+  - [Part D: Test and Refine Workflows](#part-d-test-and-refine-workflows-ai-as-validator)
+- [Exercise 6: Implement Features Using Your Domain System](#exercise-6-implement-features-using-your-domain-system)
+- [Debugging with Domain Context](#debugging-with-domain-context)
+
+### [Track 2: Model Context Protocol (MCP) Integration](#model-context-protocol-recap-and-postgres-mcp-server-installation)
+Learn to connect external tools and data sources to enhance Copilot's capabilities:
+- [MCP Recap and PostgreSQL MCP Server Installation](#model-context-protocol-recap-and-postgres-mcp-server-installation)
+  - [Microsoft Learn MCP Server](#microsoft-learn-mcp-server)
+  - [Playwright MCP](#playwright-mcp)
+  - [PostgreSQL MCP Server](#postgresql-mcp-server)
+- [Using PostgreSQL MCP Server with Prompt Files](#using-postgresql-mcp-server-together-with-prompt-files)
+- [Exploring Other MCP Servers](#other-mcp-servers)
+- [PostgreSQL MCP Troubleshooting](#postgresql-mcp-troubleshooting)
+
+### [Track 3: Copilot CLI and Agent Package Manager](#using-copilot-in-cli-and-vscode-terminal)
+Master command-line AI workflows and package reusable AI context:
+- [Using Copilot in CLI and VSCode Terminal](#using-copilot-in-cli-and-vscode-terminal)
+  - [Exercise 1: Advanced Copilot CLI Exercises](#1-advanced-copilot-cli-exercises)
+  - [Exercise 2: GitHub Repository Management](#2-github-repository-management)
+  - [Exercise 3: Project Development Workflows](#3-project-development-workflows)
+  - [Exercise 4: Model Selection and Feedback](#4-model-selection-and-feedback)
+- [Agent Package Manager (APM) - Packaging AI Workflows](#agent-package-manager-apm---packaging-ai-workflows)
+
+---
+
 ## Mastering Agent-Driven Development
 **Target Audience:** Developers who have used Copilot and Agents, but want to shore up on the good practices and tools of agent usage.
 
-### 1. Create a new project with AI Collaboration
+### Exercise 1: Create a new project with AI Collaboration
 * **Purpose:** Setup a new project collaboratively with AI, learning effective planning and implementation patterns.
 * **Steps:**
     1. **Plan with AI (Ask mode):**
@@ -32,7 +75,7 @@ Exercises for the GitHub Copilot Workshop - Advanced Track.
         * Initialize git repository
         * Create `.gitignore` (important for [workspace indexing](https://code.visualstudio.com/docs/copilot/reference/workspace-context#_what-content-is-included-in-the-workspace-index))
 
-### 2. Custom instructions
+### Exercise 2: Custom instructions
 * **Purpose:** Create base-level custom instructions for project-wide conventions.
 * **Documentation:** [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 * **Steps:**
@@ -51,7 +94,7 @@ Exercises for the GitHub Copilot Workshop - Advanced Track.
 
 **Note:** This file contains universal guidelines. Domain-specific rules come in Exercise 3.
 
-### 3. Domain-Specific Custom Instructions
+### Exercise 3: Domain-Specific Custom Instructions
 * **Purpose:** Create targeted instruction files for different parts of your codebase using AI collaboration. Learn to use AI as a sparring partner for planning, researcher for best practices, and validator for consistency.
 * **Documentation:** [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
@@ -217,7 +260,7 @@ Reference: src/api/examples/user.controller.ts for patterns
    * Have AI implement the changes in **Agent mode**
    * Verify changes make sense before accepting
 
-### 4. Domain-Specific Chat Modes
+### Exercise 4: Domain-Specific Chat Modes
 > VS Code only
 * **Purpose:** Create specialized AI assistants with specific tools and boundaries that reinforce domain separation. These modes act as domain experts with focused responsibilities.
 * **Documentation:** [Custom Chat Modes](https://code.visualstudio.com/docs/copilot/chat/chat-modes#_custom-chat-modes)
@@ -391,7 +434,7 @@ Always follow the standards in: #file:.github/instructions/tests.instructions.md
    * Verify each specialist maintains focus on their domain
    * Ask AI: *"Review my use of domain specialists. Did each stay within their responsibilities?"*
 
-### 5. Domain-Specific Prompt Files (Workflows)
+### Exercise 5: Domain-Specific Prompt Files (Workflows)
 * **Purpose:** Create reusable prompt files that serve as automated workflows for your domain specialists. These prompts encapsulate best practices and common tasks.
 
 #### Part A: Plan Workflows with AI (AI as Sparring Partner)
@@ -686,7 +729,7 @@ Reference existing test patterns: #codebase
    * Verify they follow domain-specific instructions
    * Check that they don't cross domain boundaries inappropriately
 
-### 6. Implement Features Using Your Domain System
+### Exercise 6: Implement Features Using Your Domain System
 * **Purpose:** Apply your domain specialists, workflows, and instructions to build real features. This is where everything comes together.
 
 #### Planning Implementation with AI (AI as Sparring Partner)
