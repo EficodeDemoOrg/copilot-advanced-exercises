@@ -14,11 +14,28 @@ A streamlined version of the advanced GitHub Copilot workshop designed for a 3-h
 Continue with your existing codebase and apply the techniques directly.
 
 ### Option B: Use Our Exercise Project
-Clone the provided exercise project:
+Clone the provided full-stack task manager application:
 ```bash
-git clone https://github.com/[your-org]/copilot-exercise-app
-cd copilot-exercise-app
+git clone https://github.com/EficodeDemoOrg/copilot-fullstack
+cd copilot-fullstack
+docker-compose up --build
 ```
+
+The project includes:
+- **Frontend:** React 19 + TypeScript + Vite
+- **Backend:** Node.js + Express + TypeScript
+- **Database:** PostgreSQL with Docker
+- Pre-configured with domain structure (frontend, backend, database)
+- Ready for applying custom instructions and workflows
+
+See the [project README](https://github.com/EficodeDemoOrg/copilot-fullstack) for details.
+
+### Option C: Bootstrap a New Project
+Create a new project from scratch using AI:
+1. Use **Ask mode** with **Claude Sonnet 4**
+2. Add `#file:EXERCISE_APP_IDEAS.md` for inspiration
+3. Prompt: *"Help me design a [type of application]. Quiz me about requirements, tech stack, and architecture."*
+4. Switch to **Agent mode** and initialize the project structure
 
 ---
 
