@@ -245,7 +245,7 @@ Follow: #file:.github/instructions/backend.instructions.md
       "command": "docker",
       "args": [
         "run", "-i", "--rm", "mcp/postgres",
-        "postgresql://postgres:postgres@host.docker.internal:5432/testdb"
+        "postgresql://postgres:password@host.docker.internal:5432/taskmanager"
       ]
     }
   }
