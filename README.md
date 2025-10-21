@@ -1094,6 +1094,39 @@ For each issue found, include:
     9. Prompt: "Show all users who have at least one loan"
     10. Think about how the information provided by the MCP server could be utilised in prompts? How could it help build complete, AI poweered development flows?
 
+#### MCP Servers in Dev Containers
+
+MCP servers can be configured in Dev Containers through the `devcontainer.json` file. This allows you to include MCP server configurations as part of your containerized development environment.
+
+* **Documentation:** [MCP Servers in Dev Containers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_dev-containers)
+* **Steps:**
+    1. Add the server configuration to the `customizations.vscode.mcp` section in your `devcontainer.json`:
+        ```json
+        {
+          "image": "mcr.microsoft.com/devcontainers/typescript-node:latest",
+          "customizations": {
+            "vscode": {
+              "mcp": {
+                "servers": {
+                  "playwright": {
+                    "command": "npx",
+                    "args": ["-y", "@microsoft/mcp-server-playwright"]
+                  }
+                }
+              }
+            }
+          }
+        }
+        ```
+    2. When the Dev Container is created, VS Code automatically writes the MCP server configurations to the remote `mcp.json` file
+    3. The MCP servers become available in your containerized development environment automatically
+
+**Benefits:**
+- Consistent MCP server setup across team members
+- MCP configurations version-controlled with your project
+- Automatic setup when container is built
+- No manual MCP configuration needed on each machine
+
 ### Using PostgreSQL MCP Server together with prompt files
 * **Purpose:** Use a prompt file to automate the generation of ER-diagram based on the database schema.
 * **Steps:**
