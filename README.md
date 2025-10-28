@@ -1,4 +1,4 @@
-# Copilot Hackathon - Advanced Track
+# Copilot Training - Advanced Track
 
 ## Part 1 exercises
 Individually executed exercises in the first workshop.
