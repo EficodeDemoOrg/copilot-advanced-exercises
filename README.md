@@ -79,7 +79,7 @@ Individually executed exercises in the first workshop.
         * Customize UX-friendly validation rules
         ```
 
-### Model Context Protocol recap and Postgres MCP server installation
+### Model Context Protocol recap and MCP server installation
 * **Purpose:** Understand how MCP servers work, how they can be run locally, familiarize with the selection of MCP servers.
 * **MCP Recap:**
     * MCP (Model Context Protocol) servers provide a standardized way to interact with various tools, services, and systems.
@@ -121,7 +121,7 @@ Individually executed exercises in the first workshop.
 3. Issue a prompt that uses the browser, e.g. "Browse to google.com. Enter keywords "GitHub Copilot" and click on the search button. Wait for search results to load. Extract and return the titles and URLs of the first five search results."
 
 #### PostgreSQL MCP Server
-* Note: Docker required. See instructions at the end of the documentation for using NPM and Podman.
+* **Note:** Docker required. See instructions at the end of the documentation for using NPM and Podman. If you can't use neither on your computer, you can skip this exercise.
 * **Steps:**
     1. Add the following MCP server configuration in your mcp.json file:
         * Windows and Mac
@@ -169,6 +169,7 @@ Individually executed exercises in the first workshop.
     10. Think about how the information provided by the MCP server could be utilised in prompts? How could it help build complete, AI poweered development flows?
 
 ### Using PostgreSQL MCP Server together with prompt files
+* **Note:** Docker required. See instructions at the end of the documentation for using NPM and Podman. If you can't use neither on your computer, you can skip this exercise.
 * **Purpose:** Use a prompt file to automate the generation of ER-diagram based on the database schema.
 * **Steps:**
     1. Create a new prompt file (see the instructions above)
