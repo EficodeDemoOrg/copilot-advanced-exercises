@@ -100,19 +100,16 @@ Individually executed exercises in the first workshop.
         ```json
         {
             "servers": {
-                {
-                    "microsoft.docs.mcp": {
-                        "type": "http",
-                        "url": "https://learn.microsoft.com/api/mcp"
-                    }
+                "microsoft.docs.mcp": {
+                    "type": "http",
+                    "url": "https://learn.microsoft.com/api/mcp"
                 }
             }
         }
         ```
-    5. Run the server using the control that appear on top of the MPC server definition in the file.
-    6. Open Copilot Chat and **make sure you are in the Agent mode.**
-    7. Check the tools menu in the chat window. Can you see the Microsoft MCP server tools?
-    8. Issue the following prompt: “What are the Azure CLI commands to create a container app with a managed identity? Search Microsoft docs and fetch full doc.”
+    5. Open Copilot Chat and **make sure you are in the Agent mode.**
+    6. Check the tools menu in the chat window. Can you see the Microsoft MCP server tools?
+    7. Issue the following prompt: “What are the Azure CLI commands to create a container app with a managed identity? Search Microsoft docs and fetch full doc.”
 
 #### Playwright MCP
 
