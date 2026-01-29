@@ -20,7 +20,7 @@ Build a complete development workflow using AI agents, custom instructions, and 
   - [Part B: Create Domain Instruction Files](#part-b-create-domain-instruction-files)
   - [Part C: Generate Instructions with AI](#part-c-generate-instructions-with-ai-ai-as-researcher--implementer)
   - [Part D: Validate with AI](#part-d-validate-with-ai-ai-as-validator)
-- [Exercise 4: Domain-Specific Chat Modes](#exercise-4-domain-specific-chat-modes) (VS Code only)
+- [Exercise 4: Domain-Specific Custom Agents](#exercise-4-domain-specific-custom-agents) (VS Code only)
 - [Exercise 5: Domain-Specific Prompt Files (Workflows)](#exercise-5-domain-specific-prompt-files-workflows)
   - [Part A: Plan Workflows with AI](#part-a-plan-workflows-with-ai-ai-as-sparring-partner)
   - [Part B: Create Prompt Files](#part-b-create-prompt-files)
@@ -260,16 +260,16 @@ Reference: src/api/examples/user.controller.ts for patterns
    * Have AI implement the changes in **Agent mode**
    * Verify changes make sense before accepting
 
-### Exercise 4: Domain-Specific Chat Modes
+### Exercise 4: Domain-Specific Custom Agents
 > VS Code only
-* **Purpose:** Create specialized AI assistants with specific tools and boundaries that reinforce domain separation. These modes act as domain experts with focused responsibilities.
-* **Documentation:** [Custom Chat Modes](https://code.visualstudio.com/docs/copilot/chat/chat-modes#_custom-chat-modes)
+* **Purpose:** Create specialized AI assistants with specific tools and boundaries that reinforce domain separation. These custom agents act as domain experts with focused responsibilities.
+* **Documentation:** [Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 
 #### Planning Domain Specialists (AI as Sparring Partner)
 
 1. **Design specialists with AI (Ask mode):**
    * Use Ask mode with `#file:DOMAIN_STRUCTURE.md` as context
-   * Prompt: *"For each domain we identified (backend, frontend, tests, etc.), help me design a specialized chat mode. What specific tools, boundaries, and protocols should each specialist have? Consider what they should and shouldn't be allowed to do."*
+   * Prompt: *"For each domain we identified (backend, frontend, tests, etc.), help me design a specialized custom agent. What specific tools, boundaries, and protocols should each specialist have? Consider what they should and shouldn't be allowed to do."*
    * Discuss with AI:
      * Which Copilot tools each specialist needs (codebase, terminal, problems, usages, etc.)
      * What boundaries prevent specialists from working outside their domain
@@ -282,16 +282,16 @@ Reference: src/api/examples/user.controller.ts for patterns
      * Frontend: Creating components, forms, state management
      * Tests: Writing test suites, generating test data, coverage analysis
 
-#### Creating Chat Modes (AI as Implementer)
+#### Creating Custom Agents (AI as Implementer)
 
-1. **Create chat mode files:**
-   * Chat mode selector → "Configure modes" → "Create new custom chat mode file"
+1. **Create custom agent files:**
+   * Custom agent selector → "Configure Custom agents" → "Create new custom agent file"
    * Create one per domain: `backend-specialist`, `frontend-specialist`, `test-engineer`, `database-specialist`, etc.
 
-2. **Generate mode configuration with AI:**
+2. **Generate agent configuration with AI:**
    * Use Agent mode for each specialist
    * Provide context: `#file:DOMAIN_STRUCTURE.md` and corresponding domain instruction file
-   * Prompt: *"Create a chat mode for a [DOMAIN] specialist. This specialist should only work on [DOMAIN] files matching pattern `[PATTERN]`. Include appropriate tools and clear boundaries. Reference the domain instruction file."*
+   * Prompt: *"Create a custom agent for a [DOMAIN] specialist. This specialist should only work on [DOMAIN] files matching pattern `[PATTERN]`. Include appropriate tools and clear boundaries. Reference the domain instruction file."*
 
 **Example - Backend Specialist:**
 ```yaml
@@ -413,10 +413,10 @@ You are a test automation specialist ensuring code quality.
 Always follow the standards in: #file:.github/instructions/tests.instructions.md
 ```
 
-#### Validate Chat Modes (AI as Validator)
+#### Validate Custom Agents (AI as Validator)
 
-1. **Test each specialist mode:**
-   * Select the custom mode in chat selector
+1. **Test each specialist agent:**
+   * Select the custom agent in agent selector
    * Ask domain-specific questions: *"What should I consider when creating a new [FEATURE] in this domain?"*
    * Verify the mode:
      * References the correct domain instruction file
@@ -424,13 +424,13 @@ Always follow the standards in: #file:.github/instructions/tests.instructions.md
      * Uses appropriate tools for the domain
 
 2. **Test boundary enforcement:**
-   * In **backend-specialist** mode, ask: *"How should I style this button?"*
+   * In **backend-specialist** agent, ask: *"How should I style this button?"*
    * AI should refuse and suggest using frontend-specialist instead
    * Prompt for validation: *"You just asked me to work outside my domain. Am I correctly respecting my boundaries?"*
 
 3. **Cross-domain coordination test:**
    * Think of a feature that spans multiple domains
-   * Switch between specialist modes as needed
+   * Switch between specialist agents as needed
    * Verify each specialist maintains focus on their domain
    * Ask AI: *"Review my use of domain specialists. Did each stay within their responsibilities?"*
 
@@ -440,7 +440,7 @@ Always follow the standards in: #file:.github/instructions/tests.instructions.md
 #### Part A: Plan Workflows with AI (AI as Sparring Partner)
 
 1. **Identify common workflows (Ask mode):**
-   * For each domain, use Ask mode with the corresponding specialist chat mode context
+   * For each domain, use Ask mode with the corresponding specialist custom agent context
    * Prompt: *"For the [DOMAIN] domain in my project, what are the most common repetitive tasks that developers perform? Which of these would benefit from a standardized, automated workflow?"*
    * AI will suggest workflows like:
      * **Backend:** Create new endpoint, add middleware, create database migration, add validation schema
@@ -468,8 +468,8 @@ For each workflow:
 
 1. **Generate prompt file (Agent mode):**
    * Switch to **Agent mode**
-   * Provide context: workflow plan, domain instruction file, specialist chat mode
-   * Prompt: *"Create a prompt file for [WORKFLOW]. It should use the [DOMAIN-SPECIALIST] mode and guide the user through [STEPS]. Ask for necessary inputs, then implement according to our domain standards."*
+   * Provide context: workflow plan, domain instruction file, specialist custom agent
+   * Prompt: *"Create a prompt file for [WORKFLOW]. It should use the [DOMAIN-SPECIALIST] custom agent and guide the user through [STEPS]. Ask for necessary inputs, then implement according to our domain standards."*
 
 **Example - Backend: New API Endpoint**
 ```markdown
@@ -715,7 +715,7 @@ Reference existing test patterns: #codebase
 #### Part D: Test and Refine Workflows (AI as Validator)
 
 1. **Test each prompt:**
-   * Use the appropriate specialist mode
+   * Use the appropriate specialist custom agent
    * Run the prompt by typing `/[prompt-name]` in chat
    * Provide test inputs and let AI execute the workflow
    * Verify the workflow produces expected results
@@ -725,7 +725,7 @@ Reference existing test patterns: #codebase
    * Request improvements: *"Make the workflow more robust by adding [SPECIFIC ENHANCEMENT]."*
 
 3. **Test workflow boundaries:**
-   * Ensure workflows use the correct specialist mode
+   * Ensure workflows use the correct specialist custom agent
    * Verify they follow domain-specific instructions
    * Check that they don't cross domain boundaries inappropriately
 
@@ -753,7 +753,7 @@ Reference existing test patterns: #codebase
 **For each feature, follow this structured approach:**
 
 1. **Backend Implementation (Backend Specialist):**
-   * Switch to **backend-specialist** mode
+   * Switch to **backend-specialist** custom agent
    * Use your workflow: `/backend-new-endpoint`
    * Example: *"Using the backend workflow, create a user authentication API with login, logout, and token refresh endpoints."*
    * Let the specialist guide you through:
@@ -765,14 +765,14 @@ Reference existing test patterns: #codebase
    * Review the implementation with AI: *"Review the code you just created. Does it follow all our backend standards? Are there any security concerns?"*
 
 2. **Database Setup (if applicable):**
-   * If you have a database specialist mode, use it
-   * Otherwise, stay in backend-specialist mode
+   * If you have a database specialist custom agent, use it
+   * Otherwise, stay in backend-specialist custom agent
    * Create migrations or schema updates
    * Add seed data for development/testing
    * Verify database integrity constraints
 
 3. **Frontend Implementation (Frontend Specialist):**
-   * Switch to **frontend-specialist** mode  
+   * Switch to **frontend-specialist** custom agent  
    * Use your workflow: `/frontend-new-component`
    * Example: *"Using the frontend workflow, create a login form that connects to our authentication API. Include form validation, error handling, and loading states."*
    * The specialist will handle:
@@ -785,7 +785,7 @@ Reference existing test patterns: #codebase
    * Ask for review: *"Evaluate this component for accessibility and user experience. What improvements would you suggest?"*
 
 4. **Testing Implementation (Test Engineer):**
-   * Switch to **test-engineer** mode
+   * Switch to **test-engineer** custom agent
    * Use your workflow: `/test-comprehensive`
    * Example: *"Generate comprehensive tests for the authentication feature, covering both API endpoints and UI components."*
    * The specialist will create:
@@ -863,21 +863,21 @@ Feature: User Profile Management
    
    → AI provides plan with: backend API, frontend components, tests
 
-2. Backend Phase (backend-specialist mode):
+2. Backend Phase (backend-specialist custom agent):
    "/backend-new-endpoint"
    → Creates: Profile model, GET/PUT endpoints, validation, error handling
    
    Validation: "Review this API for security issues"
    → AI checks: auth, input validation, SQL injection protection
 
-3. Frontend Phase (frontend-specialist mode):
+3. Frontend Phase (frontend-specialist custom agent):
    "/frontend-new-component"
    → Creates: ProfileForm component with validation, API integration
    
    Validation: "Check this form for accessibility"
    → AI verifies: ARIA labels, keyboard navigation, focus management
 
-4. Testing Phase (test-engineer mode):
+4. Testing Phase (test-engineer custom agent):
    "/test-comprehensive"
    → Creates: Unit tests, integration tests, E2E tests
    
@@ -971,13 +971,13 @@ Feature: User Profile Management
 2. After running the server, check that the tools are available in the agent mode tools menu.
 3. Issue a prompt that uses the browser, e.g. "Browse to google.com. Enter keywords "GitHub Copilot" and click on the search button. Wait for search results to load. Extract and return the titles and URLs of the first five search results."
 
-##### Creating a QA Expert Chat Mode with Playwright
+##### Creating a QA Expert Custom Agent with Playwright
 
-Now that you have Playwright MCP running, create a specialized QA expert mode that can perform exploratory testing:
+Now that you have Playwright MCP running, create a specialized QA expert custom agent that can perform exploratory testing:
 
-1. **Create the QA Expert Chat Mode:**
-   * Chat mode selector → "Create new custom chat mode file"
-   * Name it `qa-explorer.chatmode.md`
+1. **Create the QA Expert Custom Agent:**
+   * Custom agent selector → "Create new custom agent file"
+   * Name it `qa-explorer.agent.md`
    * Example configuration:
 
 ```yaml
@@ -1041,7 +1041,7 @@ For each issue found, include:
 ```
 
 3. **Test the QA workflow:**
-   * Switch to **qa-explorer** mode
+   * Switch to **qa-explorer** custom agent
    * Run `/exploratory-test`
    * Provide your application URL
    * Let the AI conduct exploratory testing of your features
@@ -1338,7 +1338,7 @@ you are currently using for work.
     6. **Create custom workflows:**
         * Create a new `.prompt.md` file for a specific development task that you would like to automate
         * Add custom `.instructions.md` files for your project's coding standards
-        * Create a new `.chatmode.md` file for a specialized chat mode that fits your workflow
+        * Create a new `.agent.md` file for a specialized custom agent that fits your workflow
 
     7. **Install existing APM packages:**
         ```bash

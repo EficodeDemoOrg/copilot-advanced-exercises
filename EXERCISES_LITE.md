@@ -105,17 +105,17 @@ applyTo: "src/api/**/*.ts"
 Reference: src/api/examples/user.controller.ts
 ```
 
-### Exercise 3: Domain Chat Mode
+### Exercise 3: Domain Custom Agent
 
-1. **Create ONE specialist mode:**
-   * Chat mode selector → "Configure modes" → "Create custom mode"
+1. **Create ONE specialist custom agent:**
+   * Custom agent selector → "Configure Custom agents" → "Create custom agent"
    * Name: `[domain]-specialist`
 
 2. **Generate with AI (Agent mode):**
-   * Prompt: *"Create a chat mode for a [DOMAIN] specialist. Include: responsibilities, boundaries, tools needed, and reference to domain instructions."*
+   * Prompt: *"Create a custom agent for a [DOMAIN] specialist. Include: responsibilities, boundaries, tools needed, and reference to domain instructions."*
 
 3. **Test it:**
-   * Select your new mode
+   * Select your new custom agent
    * Ask a domain question
    * Verify it stays in boundaries
 
@@ -183,7 +183,7 @@ Follow: #file:.github/instructions/backend.instructions.md
 1. **Choose a simple feature:**
    * Examples: User login, List items, Create record
 
-2. **Use your specialist mode:**
+2. **Use your specialist custom agent:**
    * Switch to your domain specialist
    * Use your workflow: `/your-workflow-name`
 
@@ -192,7 +192,7 @@ Follow: #file:.github/instructions/backend.instructions.md
    1. Planning (Ask mode - Claude Sonnet 4):
       "Plan implementation for [feature]"
    
-   2. Implementation (Your specialist mode):
+   2. Implementation (Your specialist custom agent):
       "/your-workflow"
       → Follow the prompts
    
@@ -389,7 +389,7 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
 
 ### Domain-Driven AI Development
 ✅ **Custom Instructions:** Project-wide and domain-specific standards
-✅ **Specialist Modes:** Focused AI assistants with clear boundaries
+✅ **Specialist Agents:** Focused AI assistants with clear boundaries
 ✅ **Workflow Prompts:** Reusable, automated development workflows
 ✅ **Model Selection:** Choose the right AI model for each task
 
@@ -400,7 +400,7 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
 
 ### Best Practices
 1. **Start small:** One domain, one workflow, iterate
-2. **Validate often:** Test your instructions and modes work as expected
+2. **Validate often:** Test your instructions and custom agents work as expected
 3. **Use appropriate models:** Claude for complex tasks, GPT-4 for simple generation
 4. **Document patterns:** Save successful prompts and workflows
 
@@ -410,7 +410,7 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
 
 * **Documentation:**
   * [Custom Instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
-  * [Chat Modes](https://code.visualstudio.com/docs/copilot/chat/chat-modes)
+  * [Custom Agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
   * [MCP Servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
   * [Model Selection Guide](https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide)
 
