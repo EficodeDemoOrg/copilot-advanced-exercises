@@ -2,6 +2,8 @@
 
 A streamlined version of the advanced GitHub Copilot workshop designed for a 3-hour session.
 
+📚 **Full Workshop:** See [README.md](README.md) for all 6 tracks and complete exercises.
+
 **Prerequisites:**
 * Visual Studio Code installed (primary IDE)
 * GitHub Copilot and Copilot Chat extensions installed
@@ -208,6 +210,10 @@ Follow: #file:.github/instructions/backend.instructions.md
    * Use **GPT-4.1** for: Quick code generation, simple fixes
    * Check model indicator in chat
 
+**📚 Learn More:** Complete [Track 1: Agent-Driven Development](TRACK1_AGENT_DRIVEN_DEVELOPMENT.md) covers 6 detailed exercises with advanced workflows, debugging strategies, and real-world examples.
+
+**📚 Quality Workflows:** Explore [Track 2: Code Review](TRACK2_CODE_REVIEW.md), [Track 3: Refactoring](TRACK3_REFACTORING.md), and [Track 4: Migration](TRACK4_MIGRATION.md) for AI-powered quality improvements.
+
 ---
 
 ## Track 2: MCP Integration
@@ -338,6 +344,8 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
 - Version-controlled MCP configurations
 - No manual setup needed on each machine
 
+**📚 Learn More:** Complete [Track 5: MCP Integration](TRACK5_MCP_INTEGRATION.md) covers additional MCP servers (Playwright, GitHub, Atlassian, Postman), integration patterns, QA automation with custom agents, and troubleshooting guides.
+
 ---
 
 ## Track 3: CLI & APM (Optional/Homework)
@@ -383,6 +391,8 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
 
 3. **Learn more:** [github.com/danielmeppiel/apm](https://github.com/danielmeppiel/apm)
 
+**📚 Learn More:** Complete [Track 6: CLI & APM](TRACK6_CLI_AND_APM.md) covers GitHub repo management from CLI, model selection, APM package creation, team distribution strategies, and practical use cases.
+
 ---
 
 ## Key Takeaways
@@ -419,4 +429,11 @@ MCP servers can be configured in Dev Containers through the `devcontainer.json` 
   * [MCP Documentation](https://modelcontextprotocol.io/)
 
 * **Full Workshop:**
-  * See `README.md` for comprehensive exercises and examples
+  * [README.md](README.md) - Navigation hub with all 6 tracks
+  * [Track 1: Agent-Driven Development](TRACK1_AGENT_DRIVEN_DEVELOPMENT.md)
+  * [Track 2: Code Review](TRACK2_CODE_REVIEW.md)
+  * [Track 3: Refactoring](TRACK3_REFACTORING.md)
+  * [Track 4: Migration](TRACK4_MIGRATION.md)
+  * [Track 5: MCP Integration](TRACK5_MCP_INTEGRATION.md)
+  * [Track 6: CLI & APM](TRACK6_CLI_AND_APM.md)
+  * [JetBrains Prompt Templates](JETBRAINS_PROMPTS.md)
